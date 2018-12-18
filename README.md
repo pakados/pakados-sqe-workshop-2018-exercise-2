@@ -1,64 +1,41 @@
 # Sample project
 
-* Use this project as a template.
-* Clone the project:
-    * Using user/password: `git clone https://github.com/aviram26/sqe-workshop-2018-sample-project.git` 
-    * Using SSH key: `git clone git@github.com:aviram26/sqe-workshop-2018-sample-project.git`
-* Install all libraries run: `npm install`
-* For code parsing, this project uses the [Esprima](http://esprima.org/) library.
-    * See example usage in `src/js/code-analyzer.js`
-* Run the project:
-    * From the command-line run: `npm start`
-    * After the bundler is done, execute the `index.html` from your IDE (preferably `WebStorm`)
-    * Try the parser... 
-* For testing, this project uses the [Mocha](https://mochajs.org/) library.
-    * From the command-line run: `npm run test`
-    * See example test in `test/code-analyzer.test.js`
-* For coverage, this project uses the [nyc](https://github.com/istanbuljs/nyc) library.
-    * From the command-line run: `npm run coverage`
-    * See the report file `coverage/coverage-summary.json`
-* For linting, this project uses the [ESLint](https://eslint.org/) library.
-    * From the command-line run: `npm run lint`
-    * See the report file `lint/eslint-report.json`
+In this assignment we were asked to do kind of subtitution on a given function so there will be no local veraibles in the function.
+Also for each predicate (while/if) we were asked to mark it in green in case of ture case or red otherwise.
 
 #### I/O Example
 
 The input:
 
 ```javascript
-function binarySearch(X, V, n){
-    let low, high, mid;
-    low = 0;
-    high = n - 1;
-    while (low <= high) {
-        mid = (low + high)/2;
-        if (X < V[mid])
-            high = mid - 1;
-        else if (X > V[mid])
-            low = mid + 1;
-        else
-            return mid;
+function foo(x, y, z){
+    let a = x + 1;
+    let b = a + y;
+    let c = 0;
+    
+    if (b < z) {
+        c = c + 5;
+        return x + y + z + c;
+    } else if (b < z * 2) {
+        c = c + x + 5;
+        return x + y + z + c;
+    } else {
+        c = c + z + 5;
+        return x + y + z + c;
     }
-    return -1;
 }
+
+
 ```
 
 Should produce:
 
-Line | Type | Name | Condition | Value
---- | --- | --- | --- | ---
-1 | function declaration | binarySearch 
-1 | variable declaration | X
-1 | variable declaration | V
-... | ... | ... | ... | ...
-2 | variable declaration | low | | null (or nothing)
-... | ... | ... | ... | ...
-3 | assignment expression | low | | 0
-4 | assignment expression | high | | n - 1
-5 | while statement | | low <= high | 
-... | ... | ... | ... | ...
-7 | if statement | | X < V[mid] |
-... | ... | ... | ... | ... 
-9 | else if statement | | X > V[mid] |
-... | ... | ... | ... | ... 
-12 | return statement | | | mid
+function foo(x, y, z){
+    if (x + 1 + y < z) {                //this line is red
+        return x + y + z + 5;
+    } else if (x + 1 + y < z * 2) {     //this line is green
+        return x + y + z + x + 5; 
+    } else {
+        return x + y + z + z + 5;
+    }
+}
