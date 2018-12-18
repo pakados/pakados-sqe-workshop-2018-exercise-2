@@ -29,7 +29,7 @@ function foo(x, y, z){
 ```
 
 Should produce:
-
+```javascript
 function foo(x, y, z){
     if (x + 1 + y < z) {                //this line is red
         return x + y + z + 5;
@@ -39,3 +39,4 @@ function foo(x, y, z){
         return x + y + z + z + 5;
     }
 }
+```
