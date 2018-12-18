@@ -1,4 +1,4 @@
-# Sample project
+#   exercise-2 software quality
 
 In this assignment we were asked to do kind of subtitution on a given function so there will be no local veraibles in the function.
 Also for each predicate (while/if) we were asked to mark it in green in case of ture case or red otherwise.
